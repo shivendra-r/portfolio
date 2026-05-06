@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shivendrasinh Rajeshirke — Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --navy:#0a1628;--navy2:#112240;--navy3:#1e3a5f;
+    --teal:#00d4aa;--teal2:#00b894;--teal3:#00f5d4;
+    --text:#e8f0fe;--muted:#8fa3bf;--dim:#4a6080;
+    --card:#111f35;--card2:#162840;
+    --accent:#ffd166;--red:#ff6b9d;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--navy);
+    color:var(--text);
+    font-family:'Outfit',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:1rem 2.5rem;
+    display:flex;justify-content:space-between;align-items:center;
+    background:rgba(10,22,40,0.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(0,212,170,0.12);
+  }
+  .nav-logo{font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--teal);letter-spacing:0.05em;}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{color:var(--muted);font-size:0.8rem;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--teal)}
+  #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2.5rem 4rem;position:relative;overflow:hidden;}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,170,0.04) 1px, transparent 1px),linear-gradient(90deg, rgba(0,212,170,0.04) 1px, transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);}
+  .hero-blob{position:absolute;top:-10%;right:-5%;width:50vw;height:50vw;max-width:600px;max-height:600px;background:radial-gradient(circle at 40% 40%, rgba(0,212,170,0.08), transparent 70%);border-radius:50%;pointer-events:none;}
+  .hero-tag{font-family:'DM Mono',monospace;font-size:0.78rem;color:var(--teal);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;}
+  .hero-tag::before{content:'';display:block;width:30px;height:1px;background:var(--teal)}
+  h1.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,7vw,6rem);line-height:1.05;letter-spacing:-0.02em;background:linear-gradient(135deg, var(--text) 40%, var(--teal) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:1rem;}
+  .hero-sub{font-size:1.05rem;color:var(--muted);max-width:520px;margin-bottom:2.5rem;line-height:1.8;}
+  .hero-sub strong{color:var(--teal);font-weight:500}
+  .cta-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:3.5rem}
+  .btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.7rem 1.6rem;border-radius:4px;font-size:0.82rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all 0.2s;font-family:'Outfit',sans-serif;}
+  .btn-primary{background:var(--teal);color:var(--navy)}
+  .btn-primary:hover{background:var(--teal3);transform:translateY(-1px)}
+  .btn-outline{background:transparent;color:var(--teal);border:1px solid rgba(0,212,170,0.4);}
+  .btn-outline:hover{background:rgba(0,212,170,0.08);border-color:var(--teal)}
+  .hero-stats{display:flex;gap:3rem;flex-wrap:wrap;border-top:1px solid rgba(0,212,170,0.1);padding-top:2rem;}
+  .stat-num{font-family:'DM Mono',monospace;font-size:1.8rem;color:var(--teal);font-weight:500;}
+  .stat-label{font-size:0.75rem;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.2rem}
+  section{padding:5rem 2.5rem}
+  .section-tag{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--teal);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.6rem;display:flex;align-items:center;gap:0.6rem;}
+  .section-tag::before{content:'//';color:var(--dim)}
+  h2.sec-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,3rem);margin-bottom:0.5rem;letter-spacing:-0.01em;}
+  .sec-desc{color:var(--muted);font-size:0.95rem;max-width:500px;margin-bottom:3rem}
+  #about{background:var(--navy2)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+  .about-text p{color:var(--muted);font-size:0.95rem;line-height:1.9;margin-bottom:1rem}
+  .about-text p strong{color:var(--text)}
+  .info-list{list-style:none;margin-top:1.5rem}
+  .info-list li{display:flex;align-items:center;gap:0.8rem;padding:0.6rem 0;font-size:0.85rem;color:var(--muted);border-bottom:1px solid rgba(255,255,255,0.05);}
+  .info-list li span:first-child{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--teal);min-width:80px;text-transform:uppercase;letter-spacing:0.08em;}
+  .strengths{margin-top:2rem}
+  .strength-item{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:8px;padding:1rem 1.2rem;margin-bottom:0.8rem;display:flex;gap:0.8rem;align-items:flex-start;}
+  .strength-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);margin-top:0.45rem;flex-shrink:0;}
+  .strength-item h4{font-size:0.85rem;font-weight:500;margin-bottom:0.2rem}
+  .strength-item p{font-size:0.78rem;color:var(--muted)}
+  #skills{background:var(--navy)}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
+  .skill-cat{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:10px;padding:1.5rem;transition:border-color 0.2s,transform 0.2s;}
+  .skill-cat:hover{border-color:rgba(0,212,170,0.3);transform:translateY(-3px)}
+  .skill-cat-title{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--teal);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+  .tag{font-size:0.72rem;padding:0.3rem 0.65rem;border-radius:4px;background:rgba(0,212,170,0.07);color:var(--teal);border:1px solid rgba(0,212,170,0.18);font-family:'DM Mono',monospace;}
+  #projects{background:var(--navy2)}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+  .proj-card{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:10px;padding:1.8rem;display:flex;flex-direction:column;transition:border-color 0.2s,transform 0.2s;position:relative;overflow:hidden;}
+  .proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),transparent);opacity:0;transition:opacity 0.2s;}
+  .proj-card:hover{border-color:rgba(0,212,170,0.25);transform:translateY(-4px)}
+  .proj-card:hover::before{opacity:1}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem}
+  .proj-tag{font-size:0.65rem;padding:0.2rem 0.55rem;border-radius:3px;background:rgba(255,209,102,0.1);color:var(--accent);border:1px solid rgba(255,209,102,0.2);font-family:'DM Mono',monospace;}
+  .proj-card h3{font-size:1rem;font-weight:600;margin-bottom:0.7rem;line-height:1.3}
+  .proj-card p{font-size:0.82rem;color:var(--muted);flex:1;line-height:1.8}
+  .proj-bullets{list-style:none;margin-top:0.8rem}
+  .proj-bullets li{font-size:0.78rem;color:var(--muted);padding:0.3rem 0;padding-left:1rem;position:relative;line-height:1.6;}
+  .proj-bullets li::before{content:'→';position:absolute;left:0;color:var(--teal);font-size:0.7rem;top:0.35rem}
+  #experience{background:var(--navy)}
+  .timeline{position:relative;padding-left:2rem}
+  .timeline::before{content:'';position:absolute;left:0;top:0.5rem;bottom:0;width:1px;background:linear-gradient(to bottom,var(--teal),rgba(0,212,170,0.1));}
+  .tl-item{position:relative;margin-bottom:3rem}
+  .tl-dot{position:absolute;left:-2.45rem;top:0.4rem;width:10px;height:10px;border-radius:50%;background:var(--navy);border:2px solid var(--teal);}
+  .tl-meta{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--teal);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.5rem;}
+  .tl-title{font-size:1rem;font-weight:600;margin-bottom:0.2rem}
+  .tl-company{font-size:0.85rem;color:var(--muted);margin-bottom:0.8rem}
+  .tl-bullets{list-style:none}
+  .tl-bullets li{font-size:0.82rem;color:var(--muted);padding:0.3rem 0 0.3rem 1.2rem;position:relative;line-height:1.7;}
+  .tl-bullets li::before{content:'▸';position:absolute;left:0;color:var(--teal);top:0.3rem}
+  #education{background:var(--navy2)}
+  .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem}
+  .edu-card{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:10px;padding:1.5rem;}
+  .edu-degree{font-size:0.9rem;font-weight:600;margin-bottom:0.3rem}
+  .edu-inst{font-size:0.8rem;color:var(--teal);margin-bottom:0.6rem}
+  .edu-meta{font-size:0.75rem;color:var(--muted);font-family:'DM Mono',monospace}
+  .edu-badge{display:inline-block;margin-top:0.6rem;font-size:0.65rem;padding:0.2rem 0.6rem;border-radius:3px;background:rgba(0,212,170,0.08);color:var(--teal);border:1px solid rgba(0,212,170,0.2);font-family:'DM Mono',monospace;}
+  #certs{background:var(--navy)}
+  .cert-list{display:flex;flex-direction:column;gap:1rem}
+  .cert-item{background:var(--card);border:1px solid rgba(0,212,170,0.08);border-radius:8px;padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;transition:border-color 0.2s;}
+  .cert-item:hover{border-color:rgba(0,212,170,0.25)}
+  .cert-name{font-size:0.9rem;font-weight:500}
+  .cert-desc{font-size:0.78rem;color:var(--muted);margin-top:0.2rem}
+  .cert-status{font-size:0.68rem;padding:0.3rem 0.8rem;border-radius:20px;font-family:'DM Mono',monospace;white-space:nowrap;}
+  .status-done{background:rgba(0,212,170,0.1);color:var(--teal);border:1px solid rgba(0,212,170,0.25)}
+  .status-progress{background:rgba(255,209,102,0.1);color:var(--accent);border:1px solid rgba(255,209,102,0.25)}
+  #contact{background:var(--navy2)}
+  .contact-wrap{max-width:600px;text-align:center;margin:0 auto;}
+  .contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem}
+  .contact-link{display:flex;align-items:center;gap:0.5rem;padding:0.7rem 1.4rem;border-radius:6px;background:var(--card);border:1px solid rgba(0,212,170,0.12);color:var(--muted);text-decoration:none;font-size:0.82rem;transition:all 0.2s;}
+  .contact-link:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px)}
+  footer{padding:2rem 2.5rem;background:var(--navy);border-top:1px solid rgba(0,212,170,0.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  footer p{font-size:0.75rem;color:var(--dim);font-family:'DM Mono',monospace}
+  footer span{color:var(--teal)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .hero-tag{animation:fadeUp 0.6s ease 0.1s both}
+  h1.hero-name{animation:fadeUp 0.6s ease 0.25s both}
+  .hero-sub{animation:fadeUp 0.6s ease 0.4s both}
+  .cta-row{animation:fadeUp 0.6s ease 0.55s both}
+  .hero-stats{animation:fadeUp 0.6s ease 0.7s both}
+  @media(max-width:700px){
+    nav{padding:1rem 1.2rem}
+    .nav-links{gap:1rem}
+    #hero{padding:7rem 1.2rem 3rem}
+    section{padding:4rem 1.2rem}
+    .about-grid{grid-template-columns:1fr}
+    footer{flex-direction:column;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">SR // Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-blob"></div>
+  <div class="hero-tag">Data Scientist · Machine Learning Engineer</div>
+  <h1 class="hero-name">Shivendrasinh<br/>Rajeshirke</h1>
+  <p class="hero-sub">Results-driven Data Science engineering student <strong>(graduating 2026, CGPA 8.07)</strong> with hands-on experience in ML, NLP, deep learning, and computer vision — building end-to-end pipelines from raw data to deployed models.</p>
+  <div class="cta-row">
+    <a class="contact-link"
+         href="mailto:rajrajeshirke2277@gmail.com"
+         target="_blank">✉ Get in Touch</a>
+    <a class="btn btn-outline" href="#projects">View Projects ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">4+</div><div class="stat-label">ML Projects Deployed</div></div>
+    <div><div class="stat-num">8.07</div><div class="stat-label">CGPA (B.Tech)</div></div>
+    <div><div class="stat-num">5+</div><div class="stat-label">Tech Domains</div></div>
+    <div><div class="stat-num">2026</div><div class="stat-label">Graduating</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-tag">About me</div>
+  <h2 class="sec-title">Who I Am</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a Computer Science (Data Science) engineering student at Kolhapur Institute of Technology, passionate about solving complex real-world problems using <strong>data-driven techniques</strong>.</p>
+      <p>My expertise spans the full ML lifecycle — from data preprocessing and feature engineering, to model development and deployment. I'm currently upskilling in <strong>LLM Engineering and AI agent frameworks</strong>.</p>
+      <ul class="info-list">
+        <li><span>Location</span><span>Kolhapur, Maharashtra, India</span></li>
+        <li><span>Phone</span><span>+91 9067672277</span></li>
+        <li><span>Email</span><span>rajrajeshirke2277@gmail.com</span></li>
+        <li><span>Degree</span><span>B.Tech CS (Data Science), 2022–2026</span></li>
+      </ul>
+    </div>
+    <div class="strengths">
+      <div class="strength-item"><div class="strength-dot"></div><div><h4>End-to-End ML Pipeline Development</h4><p>Experience building complete pipelines from raw data to deployed models across 4+ projects.</p></div></div>
+      <div class="strength-item"><div class="strength-dot"></div><div><h4>NLP & Transformers Expertise</h4><p>Hands-on with LegalBERT, TF-IDF, and modern transformer architectures for real-world text tasks.</p></div></div>
+      <div class="strength-item"><div class="strength-dot"></div><div><h4>Business Impact Focus</h4><p>All projects oriented toward measurable outcomes — attrition reduction, SLA breach prevention, legal review efficiency.</p></div></div>
+      <div class="strength-item"><div class="strength-dot"></div><div><h4>Fast Learner</h4><p>Currently upskilling in LLM Engineering and AI agent frameworks; active in applying emerging tools to practical problems.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-tag">Technical Skills</div>
+  <h2 class="sec-title">What I Work With</h2>
+  <p class="sec-desc">A broad toolkit across languages, ML frameworks, NLP, and data visualization.</p>
+  <div class="skills-grid">
+    <div class="skill-cat"><div class="skill-cat-title">Languages</div><div class="skill-tags"><span class="tag">Python</span><span class="tag">SQL</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-title">ML / AI</div><div class="skill-tags"><span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">Logistic Regression</span><span class="tag">Time Series</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-title">NLP</div><div class="skill-tags"><span class="tag">TF-IDF</span><span class="tag">LegalBERT</span><span class="tag">NLTK</span><span class="tag">SpaCy</span><span class="tag">Transformers</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-title">Deep Learning</div><div class="skill-tags"><span class="tag">CNNs</span><span class="tag">OpenCV</span><span class="tag">Face Recognition</span><span class="tag">Image Processing</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-title">Data & Viz</div><div class="skill-tags"><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Power BI</span></div></div>
+    <div class="skill-cat"><div class="skill-cat-title">Tools</div><div class="skill-tags"><span class="tag">Git</span><span class="tag">Jupyter</span><span class="tag">DBMS</span><span class="tag">Web Design</span></div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-tag">Projects</div>
+  <h2 class="sec-title">What I've Built</h2>
+  <p class="sec-desc">End-to-end projects spanning NLP, computer vision, ML, and data analytics.</p>
+  <div class="projects-grid">
+    <div class="proj-card">
+      <div class="proj-tags"><span class="proj-tag">NLP</span><span class="proj-tag">Transformers</span><span class="proj-tag">LegalBERT</span></div>
+      <h3>AI-Based Legal Contract Risk Analyzer</h3>
+      <ul class="proj-bullets">
+        <li>End-to-end NLP pipeline to classify contract clauses, detect high-risk terms, and flag deviations from legal templates.</li>
+        <li>Leveraged TF-IDF, Logistic Regression, and LegalBERT for clause classification and risk scoring.</li>
+        <li>Implemented explainability features to increase legal team trust and adoption.</li>
+      </ul>
+    </div>
+    <div class="proj-card">
+      <div class="proj-tags"><span class="proj-tag">Machine Learning</span><span class="proj-tag">HR Analytics</span></div>
+      <h3>Employee Attrition Prediction</h3>
+      <ul class="proj-bullets">
+        <li>Classification model to predict employee attrition with high accuracy using structured HR data.</li>
+        <li>Identified key attrition drivers via feature importance analysis; delivered insights for HR policy changes.</li>
+      </ul>
+    </div>
+    <div class="proj-card">
+      <div class="proj-tags"><span class="proj-tag">Time Series</span><span class="proj-tag">Data Analytics</span></div>
+      <h3>Electric Vehicle Market Size Analysis</h3>
+      <ul class="proj-bullets">
+        <li>Analyzed EV market trends using real sales and policy datasets; built forecasting models for future growth.</li>
+        <li>Extracted strategic insights on EV adoption rates, charging gaps, and consumer behavior.</li>
+      </ul>
+    </div>
+    <div class="proj-card">
+      <div class="proj-tags"><span class="proj-tag">Computer Vision</span><span class="proj-tag">Deep Learning</span></div>
+      <h3>Deep Learning Face Recognition System</h3>
+      <ul class="proj-bullets">
+        <li>Deep learning face recognition pipeline achieving high accuracy across image and video inputs.</li>
+        <li>Implemented face detection, alignment, and feature extraction using CNNs for varied conditions.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-tag">Experience</div>
+  <h2 class="sec-title">Work History</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-meta">Data Science Internship</div>
+      <div class="tl-title">Data Science Intern</div>
+      <div class="tl-company">Technocolabs Softwares Inc.</div>
+      <ul class="tl-bullets">
+        <li>Built a Carrier Performance & SLA Risk Intelligence system to predict SLA breaches and identify shipment delays in real-world logistics data.</li>
+        <li>Applied feature engineering, exploratory data analysis, and ML classification models to flag high-risk shipments before SLA violations occurred.</li>
+        <li>Delivered actionable insights on carrier performance KPIs, helping operations teams prioritize interventions and reduce breach rates.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-tag">Education</div>
+  <h2 class="sec-title">Academic Background</h2>
+  <div class="edu-grid">
+    <div class="edu-card"><div class="edu-degree">B.Tech — CS (Data Science) Engineering</div><div class="edu-inst">Kolhapur Institute of Technology, Kolhapur</div><div class="edu-meta">2022 – 2026</div><span class="edu-badge">CGPA: 8.07</span></div>
+    <div class="edu-card"><div class="edu-degree">HSC (Class 12)</div><div class="edu-inst">Vivekanand College, Kolhapur</div><div class="edu-meta">2022</div><span class="edu-badge">76%</span></div>
+    <div class="edu-card"><div class="edu-degree">SSC (Class 10)</div><div class="edu-inst">Radhabai Shinde English Medium School, Kolhapur</div><div class="edu-meta">2020</div><span class="edu-badge">91%</span></div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="section-tag">Certifications</div>
+  <h2 class="sec-title">Continuous Learning</h2>
+  <div class="cert-list">
+    <div class="cert-item">
+      <div><div class="cert-name">LLM Engineering: Master AI, Large Language Models & Agents</div><div class="cert-desc">Building, fine-tuning, and deploying LLMs and AI agents using cutting-edge frameworks.</div></div>
+      <span class="cert-status status-progress">In Progress</span>
+    </div>
+    <div class="cert-item">
+      <div><div class="cert-name">Introduction to Career Skills in Data Analytics</div><div class="cert-desc">Data exploration, visualization, and decision-making using modern analytics tools.</div></div>
+      <span class="cert-status status-done">Completed</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-tag">Contact</div>
+
+  <div class="contact-wrap">
+    <h2 class="sec-title">Let's Connect</h2>
+
+    <p style="color:var(--muted);font-size:0.95rem;margin-top:0.5rem">
+      I'm actively seeking opportunities in Data Science and Machine Learning.
+      Feel free to reach out!
+    </p>
+
+    <div class="contact-links">
+
+      <!-- Email -->
+        <a class="contact-link"
+        href="mailto:rajrajeshirke2277@gmail.com?subject=Portfolio%20Contact"
+        target="_blank">
+        <span>✉</span>
+        rajrajeshirke2277@gmail.com
+        </a>
+
+      <!-- Phone -->
+      <a class="contact-link"
+         href="tel:+919067672277">
+        <span>📞</span>
+        +91 9067672277
+      </a>
+
+      <!-- LinkedIn -->
+      <a class="contact-link"
+         href="https://www.linkedin.com/in/shivendrasinh-rajeshirke-3234962b3/"
+         target="_blank">
+        <span>💼</span>
+        LinkedIn
+      </a>
+
+      <!-- GitHub -->
+      <a class="contact-link"
+         href="https://github.com/shivendra-r"
+         target="_blank">
+        <span>⌨</span>
+        GitHub
+      </a>
+
+    </div>
+  </div>
+</section>
+<footer>
+  <p>© 2026 <span>Shivendrasinh Rajeshirke</span> — Data Scientist</p>
+  <p>Built with <span>❤</span> · Kolhapur, Maharashtra</p>
+</footer>
+
+</body>
+</html>
