@@ -1346,6 +1346,11 @@
       nav {
         padding: 0.5rem 0;
       }
+      nav.open {
+        background: #07090e !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
       .nav-links {
         position: fixed;
         top: 70px;
@@ -1437,7 +1442,7 @@
     <div class="wrap">
       <div class="hero-content">
         <div class="status-line">
-          <span class="dot"></span>Open to Work — Data Science / ML Roles
+          <span class="dot"></span>Open to Work — Data Science / Machine Learning Roles
         </div>
         <h1 class="hero-name">Shivendrasinh<br/><span>Rajeshirke</span></h1>
         <div class="hero-role">DATA SCIENCE · MACHINE LEARNING</div>
@@ -1982,7 +1987,7 @@
   <!-- Footer -->
   <footer>
     <div class="wrap footer-inner">
-      <p>&copy; 2026 <span>Shivendrasinh Rajeshirke</span> — Data Science / ML Engineering</p>
+      <p>&copy; 2026 <span>Shivendrasinh Rajeshirke</span> — Data Science / Machine Learning </p>
       <p>Kolhapur, Maharashtra, India</p>
     </div>
   </footer>
@@ -2008,6 +2013,7 @@
     navToggle.addEventListener('click', () => {
       navToggle.classList.toggle('open');
       navLinksList.classList.toggle('open');
+      navBar.classList.toggle('open');
     });
 
     // Close menu on link click
@@ -2015,6 +2021,7 @@
       item.addEventListener('click', () => {
         navToggle.classList.remove('open');
         navLinksList.classList.remove('open');
+        navBar.classList.remove('open');
       });
     });
 
