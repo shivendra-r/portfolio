@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
   <style>
-    /* ---------- Design System Variables ---------- */
+        /* ---------- Design System Variables ---------- */
     :root {
       --bg: #050508;
       --card-bg: rgba(13, 13, 18, 0.45);
@@ -37,6 +37,73 @@
       
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
       --transition: all 0.6s var(--ease);
+
+      /* Dynamic Typography Hierarchy (Base: Mobile size) */
+      --fs-hero-name: clamp(2.4rem, 6vw, 3.8rem);
+      --fs-hero-title: clamp(1.4rem, 2.8vw, 1.8rem);
+      --fs-hero-desc: 0.95rem;
+      --fs-section-title: clamp(1.8rem, 3.5vw, 2.4rem);
+      --fs-section-num: 0.75rem;
+      --fs-lead: clamp(1.1rem, 2.2vw, 1.45rem);
+      --fs-body: 0.9rem;
+      --fs-body-sm: 0.82rem;
+      --fs-meta: 0.65rem;
+      --fs-label: 0.58rem;
+      
+      --fs-nav: 0.72rem;
+      --fs-button: 0.82rem;
+      
+      --fs-card-h3: 1.05rem;
+      --fs-project-h3: 1.25rem;
+      --fs-timeline-h3: 1.08rem;
+      --fs-ledger-h3: 1.08rem;
+    }
+
+    /* ---------- Responsive Font Size Breakpoints ---------- */
+    @media (min-width: 641px) and (max-width: 1024px) {
+      :root {
+        --fs-hero-name: clamp(2.8rem, 7vw, 4.5rem);
+        --fs-hero-title: clamp(1.5rem, 3vw, 2.2rem);
+        --fs-hero-desc: 1.05rem;
+        --fs-section-title: clamp(2rem, 4vw, 2.8rem);
+        --fs-section-num: 0.8rem;
+        --fs-lead: clamp(1.2rem, 2.5vw, 1.7rem);
+        --fs-body: 0.98rem;
+        --fs-body-sm: 0.88rem;
+        --fs-meta: 0.7rem;
+        --fs-label: 0.65rem;
+        
+        --fs-nav: 0.78rem;
+        --fs-button: 0.88rem;
+        
+        --fs-card-h3: 1.12rem;
+        --fs-project-h3: 1.45rem;
+        --fs-timeline-h3: 1.18rem;
+        --fs-ledger-h3: 1.18rem;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      :root {
+        --fs-hero-name: clamp(3.5rem, 8vw, 6.2rem);
+        --fs-hero-title: clamp(1.8rem, 3.5vw, 2.8rem);
+        --fs-hero-desc: 1.15rem;
+        --fs-section-title: clamp(2.2rem, 4.5vw, 3.2rem);
+        --fs-section-num: 0.85rem;
+        --fs-lead: clamp(1.35rem, 2.8vw, 2rem);
+        --fs-body: 1.08rem;
+        --fs-body-sm: 0.96rem;
+        --fs-meta: 0.75rem;
+        --fs-label: 0.7rem;
+        
+        --fs-nav: 0.85rem;
+        --fs-button: 0.95rem;
+        
+        --fs-card-h3: 1.22rem;
+        --fs-project-h3: 1.6rem;
+        --fs-timeline-h3: 1.28rem;
+        --fs-ledger-h3: 1.28rem;
+      }
     }
 
     /* ---------- Base Reset & Scrollbar ---------- */
@@ -243,7 +310,7 @@
       gap: 0.45rem;
       padding: 0.6rem 1.15rem;
       border-radius: 99px;
-      font-size: 0.76rem;
+      font-size: var(--fs-nav);
       font-weight: 500;
       font-family: var(--font-display);
       color: var(--ink-dim);
@@ -281,14 +348,14 @@
 
     .section-number {
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: var(--fs-section-num);
       color: var(--accent);
       letter-spacing: 0.1em;
     }
 
     .section-title-premium {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-size: var(--fs-section-title);
       font-weight: 700;
       letter-spacing: -0.03em;
       color: var(--ink);
@@ -316,7 +383,7 @@
 
     .hero-tagline {
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: var(--fs-section-num);
       color: var(--accent);
       letter-spacing: 0.2em;
       display: block;
@@ -325,7 +392,7 @@
 
     .hero-name {
       font-family: var(--font-display);
-      font-size: clamp(3.2rem, 7.5vw, 5.8rem);
+      font-size: var(--fs-hero-name);
       font-weight: 850;
       line-height: 0.95;
       letter-spacing: -0.05em;
@@ -335,7 +402,7 @@
 
     .hero-title-main {
       font-family: var(--font-display);
-      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      font-size: var(--fs-hero-title);
       font-weight: 600;
       letter-spacing: -0.03em;
       color: var(--ink-dim);
@@ -349,7 +416,7 @@
     }
 
     .hero-desc {
-      font-size: 1.05rem;
+      font-size: var(--fs-hero-desc);
       color: var(--ink-dim);
       line-height: 1.75;
       margin-bottom: 3.5rem;
@@ -363,11 +430,15 @@
     }
 
     .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
       background: var(--ink);
       color: var(--bg);
       font-family: var(--font-display);
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: var(--fs-button);
       padding: 0.9rem 2rem;
       border-radius: 99px;
       border: 1px solid var(--ink);
@@ -381,9 +452,13 @@
     }
 
     .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
       font-family: var(--font-display);
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: var(--fs-button);
       color: var(--ink);
       padding: 0.9rem 2rem;
       border-radius: 99px;
@@ -395,6 +470,12 @@
     .btn-secondary:hover {
       border-color: var(--border-hover);
       transform: translateY(-2px);
+    }
+
+    .hero-social-group {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
     }
 
     .social-icon {
@@ -459,7 +540,7 @@
 
     .card-header-line span.code {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: var(--fs-meta);
       color: var(--accent);
     }
 
@@ -477,14 +558,14 @@
 
     .stat-line .lbl {
       font-family: var(--font-mono);
-      font-size: 0.6rem;
+      font-size: var(--fs-label);
       color: var(--ink-dim);
       letter-spacing: 0.05em;
     }
 
     .stat-line .val {
       font-family: var(--font-display);
-      font-size: 0.92rem;
+      font-size: var(--fs-body);
       font-weight: 600;
       color: var(--ink);
     }
@@ -503,7 +584,7 @@
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: var(--fs-meta);
       color: var(--ink-dim);
     }
 
@@ -521,7 +602,7 @@
 
     .about-grid-left .lead-text {
       font-family: var(--font-display);
-      font-size: clamp(1.25rem, 2.5vw, 1.8rem);
+      font-size: var(--fs-lead);
       font-weight: 300;
       line-height: 1.6;
       color: var(--ink);
@@ -530,7 +611,7 @@
 
     .about-grid-left .body-text {
       color: var(--ink-dim);
-      font-size: 0.98rem;
+      font-size: var(--fs-body);
       line-height: 1.8;
     }
 
@@ -554,21 +635,21 @@
 
     .pillar-num {
       font-family: var(--font-mono);
-      font-size: 0.74rem;
+      font-size: var(--fs-meta);
       color: var(--accent);
       margin-bottom: 0.5rem;
     }
 
     .pillar-card h3 {
       font-family: var(--font-display);
-      font-size: 1.1rem;
+      font-size: var(--fs-card-h3);
       font-weight: 600;
       color: var(--ink);
       margin-bottom: 0.6rem;
     }
 
     .pillar-card p {
-      font-size: 0.88rem;
+      font-size: var(--fs-body-sm);
       color: var(--ink-dim);
       line-height: 1.7;
     }
@@ -777,7 +858,7 @@
 
     .project-number {
       font-family: var(--font-mono);
-      font-size: 0.74rem;
+      font-size: var(--fs-meta);
       color: var(--accent);
       display: block;
       margin-bottom: 2rem;
@@ -785,7 +866,7 @@
 
     .project-inner-card h3 {
       font-family: var(--font-display);
-      font-size: 1.45rem;
+      font-size: var(--fs-project-h3);
       font-weight: 700;
       color: var(--ink);
       line-height: 1.35;
@@ -793,7 +874,7 @@
     }
 
     .project-desc {
-      font-size: 0.92rem;
+      font-size: var(--fs-body-sm);
       color: var(--ink-dim);
       line-height: 1.75;
       margin-bottom: 2.5rem;
@@ -808,7 +889,7 @@
 
     .project-tech-list span {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: var(--fs-meta);
       color: var(--ink-dim);
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
@@ -820,7 +901,8 @@
       margin-top: auto;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
       padding-top: 1.5rem;
       border-top: 1px solid var(--border);
     }
@@ -839,18 +921,19 @@
 
     .deployment-status-txt {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: var(--fs-meta);
       color: var(--ink-dim);
     }
 
     .project-link-btn {
       font-family: var(--font-display);
-      font-size: 0.78rem;
+      font-size: var(--fs-nav);
       font-weight: 600;
       color: var(--ink);
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
+      margin-left: auto;
     }
 
     .project-link-btn:hover {
@@ -884,14 +967,14 @@
 
     .time-range {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: var(--fs-meta);
       color: var(--accent);
       letter-spacing: 0.05em;
     }
 
     .org-label {
       font-family: var(--font-display);
-      font-size: 1.05rem;
+      font-size: var(--fs-body);
       font-weight: 600;
       color: var(--ink-dim);
     }
@@ -913,14 +996,14 @@
 
     .timeline-glass-card h3 {
       font-family: var(--font-display);
-      font-size: 1.15rem;
+      font-size: var(--fs-timeline-h3);
       font-weight: 700;
       color: var(--ink);
       margin-bottom: 0.8rem;
     }
 
     .timeline-card-desc {
-      font-size: 0.9rem;
+      font-size: var(--fs-body-sm);
       color: var(--ink-dim);
       line-height: 1.7;
       margin-bottom: 1.8rem;
@@ -934,7 +1017,7 @@
 
     .timeline-highlights span {
       font-family: var(--font-mono);
-      font-size: 0.65rem;
+      font-size: var(--fs-meta);
       color: var(--ink-dim);
       border: 1px dashed var(--border);
       padding: 0.25rem 0.6rem;
@@ -946,7 +1029,7 @@
       align-items: center;
       gap: 0.6rem;
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: var(--fs-meta);
       border: 1px solid rgba(16, 185, 129, 0.15);
       background: rgba(16, 185, 129, 0.02);
       padding: 0.3rem 0.7rem;
@@ -999,21 +1082,21 @@
 
     .ledger-type {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: var(--fs-meta);
       color: var(--accent);
       letter-spacing: 0.05em;
     }
 
     .ledger-details h3 {
       font-family: var(--font-display);
-      font-size: 1.15rem;
+      font-size: var(--fs-ledger-h3);
       font-weight: 700;
       color: var(--ink);
       margin-bottom: 0.4rem;
     }
 
     .ledger-details p {
-      font-size: 0.88rem;
+      font-size: var(--fs-body-sm);
       color: var(--ink-dim);
       line-height: 1.65;
     }
@@ -1025,8 +1108,10 @@
 
     .doi-badge-premium {
       display: inline-flex;
+      flex-wrap: wrap; /* Prevent overflow by wrapping DOI text on narrow viewports */
+      max-width: 100%;
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: var(--fs-meta);
       border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.01);
       border-radius: 4px;
@@ -1050,11 +1135,12 @@
     .doi-badge-premium span.badge-val {
       color: var(--ink-dim);
       padding: 0.3rem 0.7rem;
+      word-break: break-all; /* Allow word breaking for DOIs on mobile */
     }
 
     .ledger-status {
       font-family: var(--font-mono);
-      font-size: 0.65rem;
+      font-size: var(--fs-meta);
       text-transform: uppercase;
       padding: 0.25rem 0.65rem;
       border-radius: 4px;
@@ -1089,7 +1175,7 @@
 
     .contact-coord-column .contact-lead {
       font-family: var(--font-display);
-      font-size: 1.4rem;
+      font-size: var(--fs-lead);
       font-weight: 300;
       line-height: 1.6;
       color: var(--ink);
@@ -1117,14 +1203,14 @@
 
     .coord-lbl {
       font-family: var(--font-mono);
-      font-size: 0.62rem;
+      font-size: var(--fs-meta);
       color: var(--accent);
       letter-spacing: 0.05em;
     }
 
     .coord-val {
       font-family: var(--font-display);
-      font-size: 0.95rem;
+      font-size: var(--fs-body);
       font-weight: 500;
       color: var(--ink);
     }
@@ -1152,7 +1238,7 @@
       padding: 0.8rem 0;
       color: var(--ink);
       font-family: var(--font-body);
-      font-size: 0.95rem;
+      font-size: var(--fs-body);
       outline: none;
       transition: var(--transition);
     }
@@ -1167,7 +1253,7 @@
       top: 0.8rem;
       color: var(--ink-dim);
       font-family: var(--font-display);
-      font-size: 0.74rem;
+      font-size: var(--fs-nav);
       font-weight: 500;
       letter-spacing: 0.05em;
       pointer-events: none;
@@ -1177,7 +1263,7 @@
     .input-field:focus ~ .input-label,
     .input-field:not(:placeholder-shown) ~ .input-label {
       top: -0.9rem;
-      font-size: 0.58rem;
+      font-size: var(--fs-label);
       color: var(--accent);
     }
 
@@ -1187,7 +1273,7 @@
       border: none;
       font-family: var(--font-display);
       font-weight: 600;
-      font-size: 0.82rem;
+      font-size: var(--fs-button);
       letter-spacing: 0.02em;
       padding: 1rem 2rem;
       border-radius: 8px;
@@ -1207,7 +1293,7 @@
 
     .form-status-container {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: var(--fs-meta);
       margin-top: 1rem;
       display: none;
     }
@@ -1229,7 +1315,7 @@
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-display);
-      font-size: 0.8rem;
+      font-size: var(--fs-nav);
       color: var(--ink-dim);
     }
 
@@ -1263,6 +1349,19 @@
       .contact-coord-column,
       .contact-form-column {
         grid-column: auto;
+      }
+
+      #hero {
+        padding-top: 9rem;
+        padding-bottom: 6rem;
+      }
+
+      .timeline-row-premium {
+        gap: 0.8rem; /* Set tighter gap for timeline details on tablet/mobile */
+      }
+
+      .project-link-btn {
+        margin-left: 0;
       }
 
       .project-inner-card {
@@ -1331,6 +1430,16 @@
         opacity: 0.6;
       }
 
+      #hero {
+        padding-top: 7.5rem;
+        padding-bottom: 4.5rem;
+      }
+
+      section {
+        padding-top: 4.5rem;
+        padding-bottom: 3.5rem;
+      }
+
       .hero-buttons {
         flex-direction: column;
         align-items: stretch;
@@ -1338,6 +1447,11 @@
 
       .btn-primary, .btn-secondary {
         text-align: center;
+      }
+
+      .hero-social-group {
+        justify-content: center;
+        margin-top: 0.5rem;
       }
 
       .status-card-premium {
@@ -1350,6 +1464,12 @@
 
       .project-inner-card {
         padding: 1.8rem 1.3rem;
+      }
+
+      .project-link-btn {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-start;
       }
 
       .glass-form-card {
@@ -1368,6 +1488,17 @@
   <header class="top-header">
     <div class="section-wrap header-inner-wrap">
       <div class="logo">S<span>R</span></div>
+      <div class="hero-social-group">
+                <a href="https://github.com/shivendra-r" target="_blank" rel="noopener" class="social-icon" title="GitHub">
+                  <svg style="width:18px;height:18px;" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+                  </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/shivendrasinh-rajeshirke-3234962b3/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">
+                  <svg style="width:18px;height:18px;" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+                  </svg>
+                </a>
       <div class="header-status">
         <span class="pulse-dot"></span>
         <span>Turning Data into Intelligent Solutions</span>
@@ -1387,7 +1518,7 @@
     </a>
     <a href="#technology" class="nav-item">
       <span class="nav-dot"></span>
-      <span class="nav-text">Tech-Stack</span>
+      <span class="nav-text">Technologies</span>
     </a>
     <a href="#projects" class="nav-item">
       <span class="nav-dot"></span>
@@ -1424,17 +1555,14 @@
             </p>
             <div class="hero-buttons">
               <a href="#projects" class="btn-primary">Explore Work</a>
-              <a href="ShivendraResume.pdf" target="_blank" rel="noopener" class="btn-secondary">View Resume</a>
-              <a href="https://github.com/shivendra-r" target="_blank" rel="noopener" class="social-icon" title="GitHub">
-                <svg style="width:18px;height:18px;" fill="currentColor" viewBox="0 0 24 24">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.577.688.479C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+              <a href="ShivendraResume.pdf" target="_blank" rel="noopener" class="btn-secondary">
+                <svg style="width:16px;height:16px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
                 </svg>
+                <span>View Resume</span>
               </a>
-              <a href="https://www.linkedin.com/in/shivendrasinh-rajeshirke-3234962b3/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn">
-                <svg style="width:18px;height:18px;" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
-                </svg>
-              </a>
+              <div class="hero-social-group">
+              </div>
             </div>
           </div>
           <div class="hero-right">
@@ -1623,7 +1751,7 @@
               </div>
               <div class="project-link-row">
                 <span class="deployment-status-dot active"></span>
-                <span class="deployment-status-txt">Active & Published on Zenodo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
+                <span class="deployment-status-txt">Active & Published on Zenodo</span> 
                 <a href="https://doi.org/10.5281/zenodo.20213767" target="_blank" rel="noopener" class="project-link-btn">
                   Zenodo Publication &nearr;
                 </a>
@@ -2081,13 +2209,21 @@
         knot.rotation.x = time * 0.16;
         knot.rotation.y = -time * 0.1;
 
-        // Point Light Orbiting
+        // Scroll Parallax Camera drift (slower parallax to keep meshes in view throughout scroll)
+        const scrollY = window.scrollY;
+        camera.position.y = -scrollY * 0.0008;
+        
+        // Minor camera sway
+        camera.position.x = Math.sin(time * 0.06) * 0.4;
+        camera.lookAt(0, camera.position.y, 0);
+
+        // Point Light Orbiting (centered relative to camera y-position)
         pLight1.position.x = Math.sin(time * 0.7) * 8;
-        pLight1.position.y = Math.cos(time * 0.5) * 6;
+        pLight1.position.y = camera.position.y + Math.cos(time * 0.5) * 6;
         pLight1.position.z = Math.sin(time * 0.3) * 4;
 
         pLight2.position.x = Math.cos(time * 0.6) * 8;
-        pLight2.position.y = Math.sin(time * 0.8) * 6;
+        pLight2.position.y = camera.position.y + Math.sin(time * 0.8) * 6;
         pLight2.position.z = Math.cos(time * 0.4) * 4;
 
         // Liquid Blob Vertex Displacement
@@ -2105,14 +2241,6 @@
           pos.setXYZ(i, (x / len) * newLen, (y / len) * newLen, (z / len) * newLen);
         }
         pos.needsUpdate = true;
-
-        // Scroll Parallax Camera drift
-        const scrollY = window.scrollY;
-        camera.position.y = -scrollY * 0.005;
-        
-        // Minor camera sway
-        camera.position.x = Math.sin(time * 0.06) * 0.4;
-        camera.lookAt(0, camera.position.y, 0);
 
         renderer.render(scene, camera);
       };
