@@ -119,6 +119,22 @@
       position: relative;
     }
 
+    /* Unified 12-Column Grid System */
+    .grid-12 {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .col-12 { grid-column: span 12; }
+    .col-8 { grid-column: span 8; }
+    .col-7 { grid-column: span 7; }
+    .col-6 { grid-column: span 6; }
+    .col-5 { grid-column: span 5; }
+    .col-4 { grid-column: span 4; }
+    .col-3 { grid-column: span 3; }
+
     /* ---------- Reveal Scroll Animations ---------- */
     .reveal-element {
       opacity: 0;
@@ -139,10 +155,15 @@
       width: 100%;
       height: 90px;
       display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .header-inner-wrap {
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 3rem;
-      z-index: 10;
+      width: 100%;
     }
 
     .logo {
@@ -205,6 +226,17 @@
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     }
 
+    .nav-indicator-pill {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 99px;
+      transition: all 0.38s cubic-bezier(0.25, 1, 0.5, 1);
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0;
+    }
+
     .nav-item {
       display: flex;
       align-items: center;
@@ -220,13 +252,10 @@
 
     .nav-item:hover {
       color: var(--ink);
-      background: rgba(255, 255, 255, 0.03);
     }
 
     .nav-item.active {
       color: var(--ink);
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     .nav-dot {
@@ -481,9 +510,13 @@
     /* ---------- Section 2: About / Focus (`#about`) ---------- */
     .about-asymmetric-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 6rem;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3rem;
       align-items: start;
+    }
+
+    .about-grid-left {
+      grid-column: span 7;
     }
 
     .about-grid-left .lead-text {
@@ -502,6 +535,7 @@
     }
 
     .about-grid-right {
+      grid-column: span 5;
       display: flex;
       flex-direction: column;
       gap: 2.5rem;
@@ -832,15 +866,20 @@
 
     .timeline-row-premium {
       display: grid;
-      grid-template-columns: 350px 1fr;
-      gap: 5rem;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3rem;
       align-items: start;
     }
 
     .timeline-meta-col {
+      grid-column: span 4;
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
+    }
+
+    .timeline-card-col {
+      grid-column: span 8;
     }
 
     .time-range {
@@ -932,8 +971,8 @@
 
     .ledger-row {
       display: grid;
-      grid-template-columns: 200px 1fr 300px;
-      gap: 4rem;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3rem;
       padding: 2.8rem 0;
       border-bottom: 1px solid var(--border);
       align-items: center;
@@ -942,6 +981,20 @@
 
     .ledger-row:hover {
       background: rgba(255, 255, 255, 0.005);
+    }
+
+    .ledger-type {
+      grid-column: span 3;
+    }
+
+    .ledger-details {
+      grid-column: span 6;
+    }
+
+    .ledger-badge-col {
+      grid-column: span 3;
+      display: flex;
+      justify-content: flex-end;
     }
 
     .ledger-type {
@@ -1021,9 +1074,17 @@
     /* ---------- Section 7: Contact Grid (`#contact`) ---------- */
     .contact-asymmetric-grid {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 6rem;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 3rem;
       align-items: start;
+    }
+
+    .contact-coord-column {
+      grid-column: span 5;
+    }
+
+    .contact-form-column {
+      grid-column: span 7;
     }
 
     .contact-coord-column .contact-lead {
@@ -1187,16 +1248,30 @@
       .ledger-row,
       .contact-asymmetric-grid {
         grid-template-columns: 1fr;
-        gap: 3.5rem;
+        gap: 2.2rem;
       }
 
+      .about-grid-left,
+      .about-grid-right,
       .project-block.p-wide,
-      .project-block.p-slim {
-        grid-column: span 12;
+      .project-block.p-slim,
+      .timeline-meta-col,
+      .timeline-card-col,
+      .ledger-type,
+      .ledger-details,
+      .ledger-badge-col,
+      .contact-coord-column,
+      .contact-form-column {
+        grid-column: auto;
+      }
+
+      .project-inner-card {
+        padding: 2.2rem 1.8rem;
+        border-radius: 16px;
       }
 
       .skills-display-panel {
-        padding: 2.2rem;
+        padding: 2rem 1.5rem;
       }
 
       .skills-tags-grid {
@@ -1205,29 +1280,39 @@
 
       .ledger-row {
         padding: 2rem 0;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
       }
 
       .ledger-badge-col {
         justify-content: flex-start;
       }
 
+      .section-header-asymmetric {
+        margin-bottom: 2.5rem;
+      }
+
       section {
-    padding-top: 2rem;
-    padding-bottom: 1rem;
-}
+        padding-top: 5rem;
+        padding-bottom: 4rem;
+      }
     }
 
     @media (max-width: 640px) {
       .section-wrap {
-        padding: 0 1.5rem;
+        padding: 0 1.25rem;
       }
 
       .top-header {
-        padding: 0 1.5rem;
+        height: 80px;
+      }
+
+      .header-status {
+        display: none; /* Hide long text status on small mobile screens */
       }
 
       .floating-nav {
-        width: 90%;
+        width: 92%;
         justify-content: space-around;
         bottom: 1.5rem;
       }
@@ -1255,6 +1340,18 @@
         text-align: center;
       }
 
+      .status-card-premium {
+        padding: 1.5rem;
+      }
+
+      .pillar-card {
+        padding-left: 1.2rem;
+      }
+
+      .project-inner-card {
+        padding: 1.8rem 1.3rem;
+      }
+
       .glass-form-card {
         padding: 1.8rem;
       }
@@ -1269,10 +1366,12 @@
 
   <!-- Top Decorative Header -->
   <header class="top-header">
-    <div class="logo">S<span>R</span></div>
-    <div class="header-status">
-      <span class="pulse-dot"></span>
-      <span>Turning Data into Intelligent Solutions</span>
+    <div class="section-wrap header-inner-wrap">
+      <div class="logo">S<span>R</span></div>
+      <div class="header-status">
+        <span class="pulse-dot"></span>
+        <span>Turning Data into Intelligent Solutions</span>
+      </div>
     </div>
   </header>
 
@@ -1819,7 +1918,7 @@
                   <label for="form-message" class="input-label">MESSAGE</label>
                 </div>
                 <button type="submit" class="submit-button-premium">
-                  <span>SUBMIT PACKET</span>
+                  <span>SUBMIT</span>
                   <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor"></path></svg>
                 </button>
                 <div class="form-status-container" id="status-panel"></div>
@@ -1891,7 +1990,6 @@
       });
       const torus = new THREE.Mesh(torusGeom, torusMat);
       scene.add(torus);
-      torus.position.set(-5, 2.5, -2);
 
       // Liquid Blob (Deformable Sphere)
       const blobGeom = new THREE.SphereGeometry(2.4, 64, 64);
@@ -1910,7 +2008,6 @@
       });
       const blob = new THREE.Mesh(blobGeom, blobMat);
       scene.add(blob);
-      blob.position.set(5, -2.5, -1);
 
       // Torus Knot
       const knotGeom = new THREE.TorusKnotGeometry(1.6, 0.5, 100, 16);
@@ -1925,7 +2022,31 @@
       });
       const knot = new THREE.Mesh(knotGeom, knotMat);
       scene.add(knot);
-      knot.position.set(-1, -7.5, -3);
+
+      // Responsive mesh sizing and placement function
+      const updateMeshPositions = () => {
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+          torus.position.set(-1.8, 4, -2);
+          blob.position.set(1.8, -1.5, -1);
+          knot.position.set(0, -5.5, -3);
+          
+          torus.scale.set(0.65, 0.65, 0.65);
+          blob.scale.set(0.65, 0.65, 0.65);
+          knot.scale.set(0.65, 0.65, 0.65);
+        } else {
+          torus.position.set(-5, 2.5, -2);
+          blob.position.set(5, -2.5, -1);
+          knot.position.set(-1, -7.5, -3);
+          
+          torus.scale.set(1, 1, 1);
+          blob.scale.set(1, 1, 1);
+          knot.scale.set(1, 1, 1);
+        }
+      };
+
+      updateMeshPositions();
+      window.addEventListener('resize', updateMeshPositions);
 
       // Ambient & Spotlights
       const ambientLight = new THREE.AmbientLight(0x0e0e1a, 1.3);
@@ -2024,25 +2145,99 @@
     // ---------- Scrollspy Navigation Active Highlight ----------
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('main > section');
+    const navContainer = document.querySelector('.floating-nav');
+    const navIndicator = document.createElement('div');
+    navIndicator.className = 'nav-indicator-pill';
+    navContainer.appendChild(navIndicator);
 
-    const spyObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const activeId = entry.target.getAttribute('id');
-          navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').slice(1) === activeId) {
-              item.classList.add('active');
-            }
-          });
+    const positionIndicator = (activeItem) => {
+      if (!activeItem) {
+        navIndicator.style.opacity = '0';
+        return;
+      }
+      navIndicator.style.opacity = '1';
+      const navRect = navContainer.getBoundingClientRect();
+      const itemRect = activeItem.getBoundingClientRect();
+      
+      navIndicator.style.width = `${itemRect.width}px`;
+      navIndicator.style.height = `${itemRect.height}px`;
+      navIndicator.style.left = `${itemRect.left - navRect.left}px`;
+      navIndicator.style.top = `${itemRect.top - navRect.top}px`;
+    };
+
+    const handleScrollspy = () => {
+      const scrollPosition = window.scrollY + window.innerHeight * 0.35; // trigger line at 35% viewport height
+      
+      let activeSection = null;
+      for (const section of sections) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          activeSection = section;
+          break;
         }
+      }
+      
+      // Fallback for very top
+      if (window.scrollY < 100) {
+        activeSection = sections[0];
+      }
+      // Fallback for very bottom
+      else if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 60) {
+        activeSection = sections[sections.length - 1];
+      }
+      
+      if (activeSection) {
+        const activeId = activeSection.getAttribute('id');
+        let activeItem = null;
+        navItems.forEach(item => {
+          if (item.getAttribute('href').slice(1) === activeId) {
+            item.classList.add('active');
+            activeItem = item;
+          } else {
+            item.classList.remove('active');
+          }
+        });
+        positionIndicator(activeItem);
+      }
+    };
+
+    // Attach scrollspy with requestAnimationFrame throttling
+    let isScrolling = false;
+    window.addEventListener('scroll', () => {
+      if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+          handleScrollspy();
+          isScrolling = false;
+        });
+        isScrolling = true;
+      }
+    }, { passive: true });
+
+    // Handle instant feedback on click
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        // Snappy class activation on click
+        navItems.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        positionIndicator(item);
       });
-    }, {
-      threshold: 0.15,
-      rootMargin: "-20% 0px -60% 0px"
     });
 
-    sections.forEach(sec => spyObserver.observe(sec));
+    // Run positioning and initial check after everything loads
+    const initScrollspy = () => {
+      handleScrollspy();
+      // Double check after font loading to fix any shift
+      if (document.fonts) {
+        document.fonts.ready.then(() => {
+          setTimeout(handleScrollspy, 100);
+        });
+      }
+    };
+
+    window.addEventListener('load', initScrollspy);
+    window.addEventListener('resize', handleScrollspy);
 
     // ---------- Contact Form Submission ----------
     const contactForm = document.getElementById('contact-form');
