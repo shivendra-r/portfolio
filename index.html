@@ -162,6 +162,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       z-index: -2;
       pointer-events: none;
     }
@@ -172,6 +173,7 @@
       left: 0;
       width: 100vw;
       height: 100vh;
+      height: 100dvh;
       z-index: -1;
       pointer-events: none;
       background: radial-gradient(circle at 50% 50%, rgba(5, 5, 8, 0.3) 0%, rgba(5, 5, 8, 0.96) 100%);
@@ -1541,7 +1543,7 @@
 <body>
 
   <!-- Three.js Ambient Particle canvas -->
-  <canvas id="bg-canvas" width="1920" height="868" style="width: 1536px; height: 695px;"></canvas>
+  <canvas id="bg-canvas"></canvas>
   <div class="bg-blur-overlay"></div>
 
   <!-- Top Decorative Header -->
@@ -1596,7 +1598,7 @@
       <span class="nav-dot"></span>
       <span class="nav-text">Contact</span>
     </a>
-  <div class="nav-indicator-pill" style="opacity: 1; width: 87.6625px; height: 41.225px; left: 8px; top: 8px;"></div></nav>
+  </nav>
 
   <main>
     
@@ -1637,7 +1639,7 @@
               </div>
               <div class="stat-line">
                 <span class="lbl">CGPA</span>
-                <span class="val text-highlight">8.10 / 10</span>
+                <span class="val text-highlight">8.64 / 10</span>
               </div>
               <div class="stat-line">
                 <span class="lbl">INTERNSHIPS</span>
@@ -1949,7 +1951,7 @@
                 </p>
                 <div class="timeline-grades">
                   <span class="grade-label">GRADUATE SCORE:</span>
-                  <span class="grade-val">CGPA 8.10 / 10</span>
+                  <span class="grade-val">CGPA 8.64 / 10</span>
                 </div>
               </div>
             </div>
@@ -2396,13 +2398,29 @@
       }
     }, { passive: true });
 
-    // Handle instant feedback on click
+    // Handle click: explicitly scroll to the target section (more reliable across
+    // mobile browsers than relying solely on the native anchor jump) and give
+    // instant visual feedback on the pill/active state.
     navItems.forEach(item => {
-      item.addEventListener('click', () => {
-        // Snappy class activation on click
-        navItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        positionIndicator(item);
+      item.addEventListener('click', (e) => {
+        const targetId = item.getAttribute('href');
+        const targetSection = targetId ? document.querySelector(targetId) : null;
+
+        if (targetSection) {
+          e.preventDefault();
+
+          // Snappy class activation on click
+          navItems.forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          positionIndicator(item);
+
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+          // Keep the URL hash in sync without triggering a second, instant jump
+          if (history.pushState) {
+            history.pushState(null, '', targetId);
+          }
+        }
       });
     });
 
